@@ -12,7 +12,7 @@ async function updateCourse(req, res) {
         return res.status(400).send('classnumber exists')
     }
     await Course.create({ username, classnumber, coursename })
-    await Teacher.findOneAndUpdate({ username }, { $push: { coursesTeach: coursename } })
+    await Teacher.findOneAndUpdate({ username }, { $push: { coursesTeach: classnumber } })
     res.status(200).send("Course created successfully.");
 }
 module.exports = {

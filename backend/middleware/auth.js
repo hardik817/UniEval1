@@ -1,6 +1,4 @@
 const { getuser } = require("../service/auth");
-const User = require("../models/student")
-const Teacher = require("../models/teacher")
 async function restrictToLoggedInUserOnly(req, res, next) {
     const userUid = req.cookies?.uid;
     if (!userUid) {
@@ -10,6 +8,7 @@ async function restrictToLoggedInUserOnly(req, res, next) {
     if (!user) {
         return res.status(401).json({ isAuthenticated: false });
     }
+    console.log(user)
     req.user = user;
     next();
 }
@@ -28,6 +27,7 @@ async function restrictToLoggedInUserOnlyForAdmin(req, res, next) {
         return res.status(401).json({ isAuthenticated: false });
     }
     const user = getuser(userUid);
+    console.log(user)
     if (!user || user.role == "student" || user.role == "teacher") {
         return res.status(401).json({ isAuthenticated: false });
     }

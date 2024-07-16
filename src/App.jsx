@@ -1,6 +1,6 @@
 import Login from "./components/forms/login"
 import Signup from "./components/forms/signup"
-import Dashboard from "./components/ui/dashboard";
+import Dashboard from "./components/dashboards/dashboard";
 import Admin from "./components/admin/admin";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'

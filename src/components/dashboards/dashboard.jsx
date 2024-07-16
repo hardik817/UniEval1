@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import Navbar from '../ui/navbar';
 const Dashboard = () => {
     const navigate = useNavigate();
 
@@ -22,10 +22,9 @@ const Dashboard = () => {
     }, [navigate]);
 
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <p>Welcome to your dashboard!</p>
-        </div>
+        <>
+            <Navbar></Navbar>
+        </>
     );
 };
 

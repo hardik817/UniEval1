@@ -1,5 +1,6 @@
 const User = require("../models/student")
 const Teacher = require("../models/teacher")
+const Admin = require("../models/admin")
 const { setUser, getuser } = require("../service/auth")
 async function handleUserSignup(req, res) {
     const { username, password, email } = req.body
@@ -8,6 +9,9 @@ async function handleUserSignup(req, res) {
     if (!user || !user1) {
         if (username.slice(2) == "b") {
             await User.create({ username, password, email })
+        }
+        else if (username.slice(2, 5) == "adm") {
+            await Admin.create({ username, password, email })
         }
         else {
             await Teacher.create({ username, password, email })
@@ -21,7 +25,8 @@ async function handleUserLogin(req, res) {
     try {
         const user = await User.findOne({ username: username, password: password });
         const user1 = await Teacher.findOne({ username: username, password: password })
-        if (!user && !user1) {
+        const user2 = await Admin.findOne({ username: username, password: password })
+        if (!user && !user1 && !user2) {
             return res.status(401).json({ error: "Invalid username or password" });
         }
 
@@ -34,6 +39,13 @@ async function handleUserLogin(req, res) {
         }
         if (user1) {
             const token = setUser(user1);
+            res.cookie("uid", token, { httpOnly: true });
+            console.log(res.cookie)
+            console.log("User found");
+            console.log("User authenticated successfully");
+        }
+        if (user2) {
+            const token = setUser(user2);
             res.cookie("uid", token, { httpOnly: true });
             console.log(res.cookie)
             console.log("User found");
