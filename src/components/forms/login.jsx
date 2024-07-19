@@ -13,9 +13,10 @@ function Login() {
     const onSubmit = async (data) => {
         try {
             const response = await axios.post("http://localhost:3000/", data, { withCredentials: true });
-            if (response.status === 200) {
+            const imp = response.status;
+            if (response.status === 200 || response.status === 201 || response.status === 202) {
                 console.log("Login successful");
-                navigate("/dashboard");
+                navigate("/dashboard", { state: { status: response.status, message: "Login successful" } });
             } else {
                 console.error("Login failed");
                 window.alert("Incorrect Password or Username");

@@ -36,6 +36,7 @@ async function handleUserLogin(req, res) {
             console.log(res.cookie)
             console.log("User found");
             console.log("User authenticated successfully");
+            return res.status(200).send("User authenticated successfully");
         }
         if (user1) {
             const token = setUser(user1);
@@ -43,6 +44,7 @@ async function handleUserLogin(req, res) {
             console.log(res.cookie)
             console.log("User found");
             console.log("User authenticated successfully");
+            return res.status(201).send("User authenticated successfully");
         }
         if (user2) {
             const token = setUser(user2);
@@ -50,8 +52,8 @@ async function handleUserLogin(req, res) {
             console.log(res.cookie)
             console.log("User found");
             console.log("User authenticated successfully");
+            return res.status(202).send("User authenticated successfully");
         }
-        return res.status(200).send("User authenticated successfully");
     } catch (error) {
         console.error(error);
         return res.status(500).send('Internal Server Error');
