@@ -1,13 +1,13 @@
 const jwt = require("jsonwebtoken")
 const secret = "hhs"
-function setUser(user) {
+function setTeach(user) {
     return jwt.sign({
         _id: user._id,
-        email: user.email,
-        role: user.role,
+        classnumber: user.classnumber,
+        email: user.coursename,
     }, secret)
 }
-function getuser(token) {
+function getTeach(token) {
     if (!token) return null;
     try {
         return jwt.verify(token, secret);
@@ -17,6 +17,6 @@ function getuser(token) {
     }
 }
 module.exports = {
-    setUser,
-    getuser
+    setTeach,
+    getTeach
 }

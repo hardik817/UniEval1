@@ -35,7 +35,11 @@ app.get("/api/check-auth", restrictToLoggedInUserOnly, (req, res) => {
     res.status(200).json({ isAuthenticated: true });
 });
 // Protected Routes
-app.use("/dashboard", restrictToLoggedInUserOnly, protectedRoute);
+// app.get('/dashboard', restrictToLoggedInUserOnly, (req, res) => {
+//     res.json({ message: 'Hello from the backend!' });
+// });
+app.use("/dashboard", protectedRoute);
+
 //Admin Auth Check Route
 app.get("/api/check-auth/admin", restrictToLoggedInUserOnlyForAdmin, (req, res) => {
     res.status(200).json({ isAuthenticated: true });
