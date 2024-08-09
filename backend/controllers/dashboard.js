@@ -29,6 +29,7 @@ async function viewCourse(req, res) {
     const { classno, courseView } = req.body;
     console.log(req.body)
     const user = await Course.findOne({ classnumber: classno, coursename: courseView });
+    console.log(user)
     if (user) {
         console.log("hello")
         const token = setTeach(user);

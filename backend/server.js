@@ -4,9 +4,11 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const { restrictToLoggedInUserOnly, checkForAuthentication, restrictToLoggedInUserOnlyForAdmin } = require("./middleware/auth");
+const { restrictToLoggedInTeacherrOnly } = require("./middleware/courseauth")
 const userRoute = require("./routes/user");
 const protectedRoute = require("./routes/dashboard");
 const adminRoute = require("./routes/admin")
+const courseRoute = require("./routes/addstudent")
 const app = express();
 const port = 3000;
 
@@ -46,7 +48,7 @@ app.get("/api/check-auth/admin", restrictToLoggedInUserOnlyForAdmin, (req, res) 
 });
 // Admin Route
 app.use("/admin", adminRoute);
-
+app.use("/addstudent", courseRoute)
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);

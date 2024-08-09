@@ -36,7 +36,7 @@ async function handleUserLogin(req, res) {
             console.log(res.cookie)
             console.log("User found");
             console.log("User authenticated successfully");
-            return res.status(200).send("User authenticated successfully");
+            return res.status(201).send("User authenticated successfully");
         }
         if (user1) {
             const token = setUser(user1);
@@ -44,7 +44,7 @@ async function handleUserLogin(req, res) {
             console.log(res.cookie)
             console.log("User found");
             console.log("User authenticated successfully");
-            return res.status(201).send("User authenticated successfully");
+            return res.status(200).send("User authenticated successfully");
         }
         if (user2) {
             const token = setUser(user2);

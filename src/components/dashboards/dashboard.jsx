@@ -27,10 +27,10 @@ const Dashboard = () => {
     const location = useLocation();
     const { status, message } = location.state || {};
     function handledashboard() {
-        if (status == 200) {
+        if (status == 201) {
             return <Userdashboard />
         }
-        else if (status == 201) {
+        else if (status == 200) {
             return <Teacherdashboard />
         }
         else if (status == 202) {
